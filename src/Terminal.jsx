@@ -6,22 +6,20 @@ const commandPalette = {
   'ajuda': {
     desc: 'Lista a paleta de comandos.',
     exe: () => {
-      const _list = commandPalette.map((cmd) => `"${cmd}": ${cmd.desc}<br>`);
+      const _list = Object.keys(commandPalette).map((cmd) => `${cmd}: ${commandPalette[cmd].desc}`).join('\n');
       return _list;
     }
   },
   'limpar': {
     desc: 'Limpa o terminal.',
-    exe: (setTerminalContent) => {
-      setTerminalContent([]);
-      return null;
+    exe: () => {
+      return 'clear';
     }
   },
   'data': {
     desc: 'Mostra a data atual.',
     exe: () => {
-      const _date = new Date().toLocaleDateString('pt-BR');
-      return _date;
+      return new Date().toLocaleDateString('pt-BR');
     }
   }
 };
@@ -40,21 +38,27 @@ function Terminal() {
     const args = tokens.slice(1);
 
     if (commandPalette[command]) { return commandPalette[command].exe(setTerminalContent, args); }
-    else { return `Comando "${command}" desconhecido.<br>Digite "ajuda" para paleta de comandos.`; }
+    else { return `Comando "${command}" desconhecido.\nDigite "ajuda" para paleta de comandos.`; }
   };
 
   const submitInput = () => {
     const inputText = inputValue.trim();
-    if (inputText !== '') return;
+    if (inputText === '') return;
 
     const userLine = `> ${inputText}`;
-    const responseLine = `> ${parseInput(inputText)}`;
+    const responseLine = `${parseInput(inputText)}`;
 
-    setTerminalContent(prev => {
-      const newLines = [...prev, userLine];
-      if (responseLine) newLines.push(responseLine);
-      return newLines;
-    });
+    if (responseLine === 'clear') { setTerminalContent([]); }
+    else {
+      setTerminalContent(prev => {
+        const newLines = [...prev, userLine];
+        if (responseLine !== null && responseLine !== undefined) {
+          if(Array.isArray(responseLine)) { newLines.push(...responseLine); }
+          else { newLines.push(responseLine); }
+        }
+        return newLines;
+      });
+    }
 
     setInputValue('');
   };
