@@ -40,6 +40,8 @@ html, body {
     text-decoration: none;
 }
 
+h1, #cmd-submit { user-select: none; }
+
 /* Layout */
 body {
     overflow: hidden;
@@ -75,6 +77,7 @@ h1 {
 #terminal-display {
     border-radius: var(--radius-sm);
     background-color: var(--bg-primary);
+    overflow-y: scroll;
     flex-grow: 1;
 }
 
@@ -116,4 +119,11 @@ h1 {
     border: var(--border);
     padding: 0.4rem 0.95rem;
     cursor: pointer;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    #root {
+        padding: 10vh 5vw;
+    }
 }
