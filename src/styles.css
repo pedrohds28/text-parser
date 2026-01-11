@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+    /* Font */
+    --font: 1rem/1.5 'Roboto Mono', monospace;
+    /* Colors */
+    --bg-primary: #0e0e14;
+    --bg-primary-hover: #231f49;
+    --bg-secondary: #13131a;
+    --bg-secondary-hover: #1c1a36;
+    --bg-tertiary: #1e1e3b;
+    --color-primary: #5553b8;
+    --color-main: #dadbf5;
+    /* Spacing */
+    --padding-sm: 0.5rem 1rem;
+    --padding-md: 1rem 1.5rem;
+    --padding-lg: 1.5rem 2.25rem;
+    /* Borders */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-pill: 50%;
+    --border: 1px solid var(--color-border);
+}
+
+/* Global */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: var(--bg-primary);
+    font: var(--font);
+    color: var(--color-main);
+}
+
+:any-link {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Layout */
+body {
+    overflow: hidden;
+}
+
+#root{
+    width: 100vw;
+    height: 100vh;
+    padding: 5vh 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#terminal-container {
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: var(--border);
+    padding: var(--padding-md);
+}
